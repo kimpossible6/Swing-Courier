@@ -1,5 +1,3 @@
-Name:Ziwei Miao
-Email: zmiao9@gatech.edu
 Special Information:
 Version: Java 8
 How to use: java -jar courier.jar
