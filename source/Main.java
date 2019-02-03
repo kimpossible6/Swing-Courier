@@ -15,7 +15,7 @@ public class Main extends JFrame{
     private JPanel p5;
     private JButton b1;
     private JLabel l1;
-    private JScrollPane jsp1;
+    private JLayeredPane jsp1;
     // private JLabel status;
     private JTabbedPane t1;
     private JEditorPane e1;
@@ -41,7 +41,8 @@ public class Main extends JFrame{
         statusbar = new JPanel();
         statusbar.setFocusable(false);
         inkP = new inkbook();
-        jsp1 = new JScrollPane(inkP.getinkbook());
+        // jsp1 = new JLayeredPane();
+        jsp1 = inkP.getinkbook();
 
         s1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         s1.setLeftComponent(t1);
