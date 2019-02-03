@@ -15,16 +15,18 @@ public class Main extends JFrame{
     private JPanel p5;
     private JButton b1;
     private JLabel l1;
-    private JScrollPane jsp1;
+    private JPanel jsp1;
     // private JLabel status;
     private JTabbedPane t1;
     private JEditorPane e1;
     private JPanel statusbar;
-    inkbook inkP;
+    // inkbook inkP;
+    
     public Main() {
        guiFrame();
     }
     public void guiFrame() {
+        UIManager.put("new InkBook",new InkBook());
         f1 = new JFrame("Microsoft Courier");
         f1.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         f1.setLayout(new BorderLayout());
@@ -40,8 +42,11 @@ public class Main extends JFrame{
         t1 = new JTabbedPane();
         statusbar = new JPanel();
         statusbar.setFocusable(false);
-        inkP = new inkbook();
-        jsp1 = new JScrollPane(inkP.getinkbook());
+        // inkP = new inkbook();
+        // jsp1 = new JLayeredPane();
+        InkBook noteBook = new InkBook();
+        // JPanel status = new StatusPanel();
+        jsp1 = noteBook.getInkBook();
 
         s1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         s1.setLeftComponent(t1);
@@ -63,7 +68,7 @@ public class Main extends JFrame{
         browser.setFocusable(false);
         // call inkbook
         
-        JLabel status = inkP.getButtonStatus();
+        JLabel status = noteBook.getButtonStatus();
         statusbar.add(status);
 
         // call calendar
