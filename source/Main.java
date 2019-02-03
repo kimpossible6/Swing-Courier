@@ -1,5 +1,5 @@
 /* Main Class
- * Ziwei Miao 
+ * Ziwei Miao
  * CS 4470
 */
 import javax.swing.*;
@@ -15,18 +15,19 @@ public class Main extends JFrame{
     private JPanel p5;
     private JButton b1;
     private JLabel l1;
-    private JScrollPane jsp1;
+    private JPanel jsp1;
     // private JLabel status;
     private JTabbedPane t1;
     private JEditorPane e1;
     private JPanel statusbar;
-    inkbook inkP;
+    // InkBookUI inkP;
+
     public Main() {
        guiFrame();
     }
     public void guiFrame() {
         f1 = new JFrame("Microsoft Courier");
-        f1.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        f1.setExtendedState(JFrame.MAXIMIZED_BOTH);
         f1.setLayout(new BorderLayout());
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // f1.setSize(1280,800);
@@ -40,9 +41,25 @@ public class Main extends JFrame{
         t1 = new JTabbedPane();
         statusbar = new JPanel();
         statusbar.setFocusable(false);
-        inkP = new inkbook();
-        jsp1 = new JScrollPane(inkP.getinkbook());
+        // inkP = new inkbook();
+        // jsp1 = new JLayeredPane();
+        InkBookUI userP = new InkBookUI();
+        // user.setFocusable(true);
+        // JPanel status = new StatusPanel();
+        jsp1 = userP;
+        JPanel statusBar = new JPanel();
+        statusBar.setLayout(new FlowLayout());
+        statusBar.setBackground(Color.GRAY);
 
+        JLabel statusLabel = new JLabel("Current Action: ");
+        JTextArea statusText = new JTextArea();
+        statusText.setPreferredSize(new Dimension(300,20));
+
+        statusBar.add(statusLabel);
+        statusBar.add(statusText);
+
+        userP.selections();
+        userP.repaintAfterAction();
         s1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         s1.setLeftComponent(t1);
         s1.setRightComponent(jsp1);
@@ -51,26 +68,26 @@ public class Main extends JFrame{
         f1.add(s1);
         f1.add(statusbar, BorderLayout.SOUTH);
         // p2 = new JPanel();
-        // call web browser 
+        // call web browser
         webbrowse wp1 =  new webbrowse("https://www.google.com/");
         JPanel browser = wp1.editHTML();
 
 
-        // call addressbook 
+        // call addressbook
         addressbook adbook = new addressbook();
         p2 = adbook.getAddressBook();
         p2.setFocusable(false);
         browser.setFocusable(false);
         // call inkbook
-        
-        JLabel status = inkP.getButtonStatus();
+
+        JLabel status = userP.getButtonStatus();
         statusbar.add(status);
 
         // call calendar
         calendar c1 = new calendar();
         p3 = c1.getCalendar();
 
-        // call photo 
+        // call photo
         photo photo1 = new photo();
         p4 = photo1.getphoto();
 
